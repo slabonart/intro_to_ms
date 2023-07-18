@@ -21,4 +21,4 @@ spring:
       max-file-size: 10MB
 
 song_service:
-  url: http://song-service:8080/songs
+  url: http://song-service-docker:8080/songs
