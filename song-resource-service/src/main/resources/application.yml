@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: song-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://song-resource-service-db:3306/song_resource_database
+    username: root
+    password: pass123
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+      defer-datasource-initialization: true
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+song_service:
+  url: http://song-service:8080/songs
