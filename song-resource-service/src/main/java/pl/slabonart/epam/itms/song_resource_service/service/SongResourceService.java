@@ -32,17 +32,7 @@ public class SongResourceService {
     @Autowired
     private SongServiceClient songServiceClient;
 
-
     private static final String DELIMITER = ",";
-
-    public SongResourceCreateResponseDTO saveSongResource(SongResource songResource) {
-
-        SongResource resource = repository.save(songResource);
-
-        return SongResourceCreateResponseDTO.builder()
-                .id(resource.getId())
-                .build();
-    }
 
     @Transactional
     public SongResourceCreateResponseDTO saveSongResource(MultipartFile file) throws IOException, TikaException, SAXException {

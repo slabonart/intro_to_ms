@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  song-resource-service:
+    build: ./song-resource-service
+    restart: always
+    ports:
+      - 8091:8080
+    depends_on:
+      - song-resource-service-db
+      - song-service
+    container_name: song-resource-service-c
+
+  song-resource-service-db:
+    platform: linux/x86_64
+    image: "mysql"
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: ${RESOURCE_MYSQL_DATABASE}
+      MYSQL_USER: ${RESOURCE_MYSQL_USER}
+      MYSQL_PASSWORD: ${RESOURCE_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${RESOURCE_MYSQL_ROOT_PASSWORD}
+
+  song-service:
+    build: ./song-service
+    restart: always
+    ports:
+      - 8092:8080
+    depends_on:
+      - song-service-db
+    container_name: song-service-c
+
+  song-service-db:
+    platform: linux/x86_64
+    image: "mysql"
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: ${SONG_MYSQL_DATABASE}
+      MYSQL_USER: ${SONG_MYSQL_USER}
+      MYSQL_PASSWORD: ${SONG_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${SONG_MYSQL_ROOT_PASSWORD}
