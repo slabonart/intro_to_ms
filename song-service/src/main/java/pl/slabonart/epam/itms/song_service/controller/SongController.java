@@ -42,7 +42,7 @@ public class SongController {
         return ResponseEntity.ok(responseMapper.toDTO(saved));
     }
 
-    @GetMapping("songs/{id}")
+    @GetMapping("/songs/{id}")
     public ResponseEntity getById(@PathVariable("id") long id) {
 
         SongMetaData song = service.getById(id);

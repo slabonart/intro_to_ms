@@ -68,4 +68,3 @@ services:
       MYSQL_USER: ${SONG_MYSQL_USER}
       MYSQL_PASSWORD: ${SONG_MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${SONG_MYSQL_ROOT_PASSWORD}
-    container_name: song-service-db
