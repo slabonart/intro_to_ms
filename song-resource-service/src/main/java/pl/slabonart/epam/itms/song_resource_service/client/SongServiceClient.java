@@ -11,7 +11,7 @@ import pl.slabonart.epam.itms.song_resource_service.dto.SongMetaDataDTO;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient(name = "song-service")
-//@RibbonClient(name = "song-service")
+@RibbonClient(name = "song-service")
 public interface SongServiceClient {
 
     @PostMapping(value = "songs/", consumes = {APPLICATION_JSON_VALUE})

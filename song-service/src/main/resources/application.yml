@@ -3,8 +3,7 @@ spring:
     name: song-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://song-service-database:3306song_database
-    url: jdbc:mysql://localhost:3308/song_database
+    url: jdbc:mysql://song-service-db:3306/song_database
     username: root
     password: pass123
   jpa:
@@ -15,9 +14,7 @@ spring:
       ddl-auto: update
       defer-datasource-initialization: true
     show-sql: true
-server:
-  port: 8092
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-service:8761/eureka
