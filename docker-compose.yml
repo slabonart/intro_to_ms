@@ -1,5 +1,12 @@
 version: "3.8"
 services:
+  eureka-service:
+    build: ./eureka-service-discovery
+    restart: always
+    ports:
+      - 8761:8761
+    container_name: eureka-service
+
   song-resource-service:
     build: ./song-resource-service
     restart: always
@@ -7,8 +14,8 @@ services:
       - 8091:8080
     depends_on:
       - song-resource-service-db
-      - song-service
-    container_name: song-resource-service-c
+      - eureka-service
+    container_name: song-resource-service
 
   song-resource-service-db:
     platform: linux/x86_64
@@ -22,13 +29,32 @@ services:
       MYSQL_PASSWORD: ${RESOURCE_MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${RESOURCE_MYSQL_ROOT_PASSWORD}
 
-  song-service:
+  song-service-a:
     build: ./song-service
     restart: always
     ports:
       - 8092:8080
     depends_on:
       - song-service-db
+      - eureka-service
+    container_name: song-service-a
+  song-service-b:
+    build: ./song-service
+    restart: always
+    ports:
+      - 8093:8080
+    depends_on:
+      - song-service-db
+      - eureka-service
+    container_name: song-service-b
+  song-service-c:
+    build: ./song-service
+    restart: always
+    ports:
+      - 8094:8080
+    depends_on:
+      - song-service-db
+      - eureka-service
     container_name: song-service-c
 
   song-service-db:

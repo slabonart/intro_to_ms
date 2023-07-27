@@ -1,5 +1,6 @@
 package pl.slabonart.epam.itms.song_resource_service.client;
 
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,9 +10,9 @@ import pl.slabonart.epam.itms.song_resource_service.dto.SongMetaDataDTO;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient(name = "SongServiceClient", url = "${song_service.url}")
+@FeignClient(name = "song-service")
 public interface SongServiceClient {
 
-    @PostMapping(value = "", consumes = {APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/songs", consumes = {APPLICATION_JSON_VALUE})
     ResponseEntity<?> createSong(@RequestBody SongMetaDataDTO songMetaDataDTO);
 }
